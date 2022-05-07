@@ -5,26 +5,35 @@ public class watch {
     enum State1{Time,Date,Alarm,Chime,Min,Hour,Day,Month,Year}
 
     public void incr60(){
-        if(m==60)
+        if(m==60) {
             m=0;
+            incr24();
+        }
         else
             m++;
     }
     public void incr24(){
-        if(h==24)
+        if(h==24) {
             h=0;
+            incr31();
+        }
+
         else
             h++;
     }
     public void incr31(){
-        if(D==31)
-            D=0;
+        if(D==31) {
+            D = 0;
+            incr12();
+        }
         else
             D++;
     }
     public void incr12(){
-        if(M==12)
-            M=0;
+        if(M==12) {
+            M = 0;
+            Y++;
+        }
         else
             M++;
     }
@@ -103,9 +112,13 @@ public class watch {
                     }
                 }
             }
-        String output= state+" "+ D +"/"+M+" "+h+":"+m;
+        String output= state+" "+state1+" "+D +"/"+M+" "+Y+" "+h+":"+m;
         return output;
-        }
     }
+    public static void main(String[] args){
+        watch clock=new watch();
+        System.out.println( clock.ModifyState("cbbbabbababbbbb"));
+    }
+}
 
 
